@@ -32,7 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3cf79659a011bd419c7a2a30eb74e9a, type: 3}
   m_Name: EyeGazeInteraction Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Eye Gaze Interaction Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.eyetracking
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f34c86d1a130cc45a438373e1e8a4fc, type: 3}
   m_Name: PlayModeRemotingPlugin Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Holographic Remoting for Play Mode
   version: 1.5.1
   featureIdInternal: com.microsoft.openxr.feature.playmoderemoting
@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: 
   features:
+  - {fileID: 8077414081255078901}
   - {fileID: -4682644737495391991}
   - {fileID: -7444857459519735470}
   - {fileID: 241525538636960241}
@@ -434,10 +435,9 @@ MonoBehaviour:
   - {fileID: 4077349717344546569}
   - {fileID: 9130108747824717538}
   - {fileID: 4440603417501290780}
+  - {fileID: -4388851854148406110}
   - {fileID: 4901850706897845513}
   - {fileID: 8954231089854288807}
-  - {fileID: -4388851854148406110}
-  - {fileID: 8077414081255078901}
   m_renderMode: 1
   m_depthSubmissionMode: 2
 --- !u!114 &4901850706897845513
