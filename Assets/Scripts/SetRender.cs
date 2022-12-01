@@ -6,6 +6,8 @@ public class SetRender : MonoBehaviour
 {
     public GameObject render0;
     public GameObject render1;
+    public GameObject lamp;
+
     // Set to render level 0
     public void SetLevel0()
     {
@@ -19,6 +21,17 @@ public class SetRender : MonoBehaviour
         Debug.Log("Render level 1");
         render0.SetActive(false);
         render1.SetActive(true);
+    }
+
+    public void ActivateLamp()
+    {
+        Debug.Log("Activating Lamp");
+        lamp.SetActive(true);
+    }
+    public void DeactivateLamp()
+    {
+        Debug.Log("Deactivating Lamp");
+        lamp.SetActive(false);
     }
 
 }
