@@ -17,7 +17,6 @@ public class SetPhysics : MonoBehaviour
         //obj.resetPosition();
         body.useGravity = false;
         body.isKinematic = true;
-        body.detectCollisions = false;
         desk.enabled = true;
 
     }
@@ -28,7 +27,6 @@ public class SetPhysics : MonoBehaviour
         //obj.resetPosition();
         body.useGravity = false;
         body.isKinematic = false;
-        body.detectCollisions = true;
         desk.enabled = false;
         
     }
@@ -39,7 +37,6 @@ public class SetPhysics : MonoBehaviour
         //obj.resetPosition();
         body.useGravity = false;
         body.isKinematic = false;
-        body.detectCollisions = true;
         desk.enabled = true;
     }
 
@@ -50,7 +47,6 @@ public class SetPhysics : MonoBehaviour
         //obj.resetPosition();
         body.useGravity = true;
         body.isKinematic = false;
-        body.detectCollisions = true;
         desk.enabled = true;
     }
 }
