@@ -6,6 +6,7 @@ using UnityEngine;
 public class ObjectsReset : MonoBehaviour
 {
     public GameObject model;
+
     private Vector3 origPos;
     private Quaternion origRot;
     // Start is called before the first frame update

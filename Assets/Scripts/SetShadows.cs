@@ -26,13 +26,17 @@ public class SetShadows : MonoBehaviour
     public void SetLevel3()
     {
         Debug.Log("Shadows Level 3: hard shadows");
+        slight.shadowResolution = UnityEngine.Rendering.LightShadowResolution.Low;
         slight.shadows = LightShadows.Hard;
     }
     // Level 4: no physics, unmovable
     public void SetLevel4()
     {
         Debug.Log("Shadows Level 4: soft shadows");
+        
         slight.shadows = LightShadows.Soft;
+        slight.shadowResolution = UnityEngine.Rendering.LightShadowResolution.VeryHigh;
+
     }
 
 }
