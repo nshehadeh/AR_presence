@@ -7,6 +7,8 @@ using Microsoft.MixedReality.Toolkit.Input;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 public class AdjustPhysics : MonoBehaviour
 {
@@ -22,9 +24,14 @@ public class AdjustPhysics : MonoBehaviour
 
     public List<Collider> colliders;
 
+    private string file = "physics.txt";
+    private string filepath;
+
 
     private void Start()
     {
+        filepath = Path.Combine(UnityEngine.Application.persistentDataPath, file);
+
         // Get the ObjectManipulator and near interactable component from each object in the list
         btns = new List<bool>() { false, false, false, false };
         g = Enumerable.Repeat(false, objects.Count).ToList();
@@ -43,6 +50,8 @@ public class AdjustPhysics : MonoBehaviour
     {
         btns[0] = false;
         btn1_press();
+        WriteConfig("Reset: ");
+
     }
     public void btn1_press()
     {
@@ -58,6 +67,8 @@ public class AdjustPhysics : MonoBehaviour
         }
         else
             buttons[0].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn1 change: ");
+
     }
     public void btn2_press()
     {
@@ -68,6 +79,8 @@ public class AdjustPhysics : MonoBehaviour
             buttons[1].GetComponent<Renderer>().material = selected;
         else
             buttons[1].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn2 change: ");
+
     }
 
 
@@ -80,6 +93,8 @@ public class AdjustPhysics : MonoBehaviour
             buttons[2].GetComponent<Renderer>().material = selected;
         else
             buttons[2].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn3 change: ");
+
     }
 
     public void btn4_press()
@@ -91,6 +106,8 @@ public class AdjustPhysics : MonoBehaviour
             buttons[3].GetComponent<Renderer>().material = selected;
         else
             buttons[3].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn4 change: ");
+
     }
 
     private void Update()
@@ -201,6 +218,19 @@ public class AdjustPhysics : MonoBehaviour
                 if (bod == rb)
                     g[index] = false;
                 index++;
+            }
+        }
+    }
+    private void WriteConfig(string message)
+    {
+        // Create a new file and write the message and boolean values to it
+        using (StreamWriter writer = new StreamWriter(filepath))
+        {
+            writer.WriteLine(message);
+
+            for (int i = 0; i < btns.Count; i++)
+            {
+                writer.Write(btns[i] + ", ");
             }
         }
     }

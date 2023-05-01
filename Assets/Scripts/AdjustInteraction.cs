@@ -6,6 +6,8 @@ using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using System;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 public class AdjustInteraction : MonoBehaviour
 {
@@ -23,12 +25,17 @@ public class AdjustInteraction : MonoBehaviour
 
     private List<ObjectManipulator> objectManipulators;
     private List<NearInteractionGrabbable> objectNears;
-//    private List<NearInteractionTouchable> objectTouch;
+
+    private string file = "interactions.txt";
+    private string filepath;
+    //    private List<NearInteractionTouchable> objectTouch;
 
 
 
     private void Start()
     {
+        filepath = Path.Combine(UnityEngine.Application.persistentDataPath, file);
+
         // Get the ObjectManipulator and near interactable component from each object in the list
         objectManipulators = new List<ObjectManipulator>();
         objectNears = new List<NearInteractionGrabbable>();
@@ -61,6 +68,8 @@ public class AdjustInteraction : MonoBehaviour
     {
         btns[0] = false;
         btn1_press();
+        WriteConfig("Reset: ");
+
     }
     public void btn1_press()
     {
@@ -81,6 +90,8 @@ public class AdjustInteraction : MonoBehaviour
         }
         string boolList = string.Join(", ", btns);
         //UnityEngine.Debug.Log("After btn none pressed vals: " + boolList);
+        WriteConfig("Btn2 change: ");
+
     }
     public void btn2_press()
     {
@@ -97,6 +108,8 @@ public class AdjustInteraction : MonoBehaviour
         }
         string boolList = string.Join(", ", btns);
         //UnityEngine.Debug.Log("Initial btn vals: " + boolList);
+        WriteConfig("Btn2 change: ");
+
     }
 
 
@@ -115,6 +128,8 @@ public class AdjustInteraction : MonoBehaviour
         }
         string boolList = string.Join(", ", btns);
         // UnityEngine.Debug.Log("Initial btn vals: " + boolList);
+        WriteConfig("Btn3 change: ");
+
     }
 
     private void Update()
@@ -188,5 +203,18 @@ public class AdjustInteraction : MonoBehaviour
                 manipulator.NearInteractionTouchable = null;
             }
         }*/
+    }
+    private void WriteConfig(string message)
+    {
+        // Create a new file and write the message and boolean values to it
+        using (StreamWriter writer = new StreamWriter(filepath))
+        {
+            writer.WriteLine(message);
+
+            for (int i = 0; i < btns.Count; i++)
+            {
+                writer.Write(btns[i] + ", ");
+            }
+        }
     }
 }

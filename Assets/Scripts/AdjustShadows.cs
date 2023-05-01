@@ -6,6 +6,7 @@ using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 public class AdjustShadows : MonoBehaviour
 {
@@ -16,15 +17,21 @@ public class AdjustShadows : MonoBehaviour
     public Material selected;
     public Material deselected;
 
+    private string file = "shadows.txt";
+    private string filepath;
+
     private void Start()
     {
         btns = new List<bool>() {false, false, false};
+        filepath = Path.Combine(Application.persistentDataPath, file);
 
     }
     public void reset()
     {
         btns[0] = false;
         btn1_press();
+        WriteConfig("Reset: ");
+
     }
     public void btn1_press()
     {
@@ -40,6 +47,9 @@ public class AdjustShadows : MonoBehaviour
         }
         else
             buttons[0].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn1 change: ");
+
+
     }
     public void btn2_press()
     {
@@ -52,6 +62,8 @@ public class AdjustShadows : MonoBehaviour
             buttons[1].GetComponent<Renderer>().material = selected;
         else
             buttons[1].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn2 change: ");
+
     }
 
 
@@ -68,6 +80,7 @@ public class AdjustShadows : MonoBehaviour
             buttons[2].GetComponent<Renderer>().material = selected;
         else
             buttons[2].GetComponent<Renderer>().material = deselected;
+        WriteConfig("Btn3 change: ");
     }
 
     private void Update()
@@ -99,5 +112,18 @@ public class AdjustShadows : MonoBehaviour
         }
 
 
+    }
+    private void WriteConfig(string message)
+    {
+        // Create a new file and write the message and boolean values to it
+        using (StreamWriter writer = new StreamWriter(filepath))
+        {
+            writer.WriteLine(message);
+
+            for (int i = 0; i < btns.Count; i++)
+            {
+                writer.Write(btns[i] + ", ");
+            }
+        }
     }
 }
